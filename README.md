@@ -8,3 +8,11 @@ The current version of this algorithm has produced two dataset variations, one w
 It is very likely that we will continue to add other various datasets to our project to help improve our model performance.
 Thank you to the original authors of the data article for paving the way for our project.
 This project is a WIP and will be updated over time.  
+
+---
+
+### Keras Sequential Model Structure
+
+<img src="model_structure_2.png?raw=true"/>
+
+<img src="model_structure_1.png?raw=true"/>
