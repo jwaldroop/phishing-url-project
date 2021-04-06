@@ -33,7 +33,7 @@ After assigning X and y for each model, I used the TensorFlow Keras utility libr
 Initially, the neural network model was fit on the full dataset to gain the most insight from the data, as well as insight on how the model structure would need to be optimized for this particular dataset. To further investigate which features may be most important, the model was fit against each table of feature types (that is, 111 features broken up into 6 tables of varying attributes). In addition, Jack used the Recursive Feature Elimination package to select the top 10, 25, and 50 most important features. Once those had been obtained, the model was fit against each. In order to avoid the model from performing continuous learning, the TensorFlow backend session was cleared each time the model was fit.
 
 ### Model Structure
-The neural network model is a TensorFlow Keras Sequential model. The model consists of 18 layers. hese 18 layers are the input and output layers, 8 dense layers, 7 dropout layers (0.20 or 0.40), and a flatten layer (directly before the output layer is applied).
+The neural network model is a TensorFlow Keras Sequential model. The model consists of 18 layers. These 18 layers are the input and output layers, 8 dense layers, 7 dropout layers (0.20 or 0.40), and a flatten layer (directly before the output layer is applied).
 
 Each dense layer and the output layer have activation functions applied in the layer structure. The dense layers have a rectified linear unit (ReLU) activation applied, with the output layer having a Sigmoid activation.
 
@@ -49,13 +49,16 @@ The model fit uses the variables train_X and train_y, with a validation split of
 
 It is important to note that the original validation split for X and y *are not* used at all during the model fit. The data split ends up being 52.5% training, 22.5% validation, and the remaining 25% being held out for model evaluation and predictions. This has been done in the hopes of mitigating overfitting.
 
-The batch size (how many rows are fed into the model at a time) is set to 15. The model is set to run for 500 epochs -this is where the early stopping callback function plays an important role. While the model does not have many rows being fed in at once, the high number of epochs with a generous patience level allows the model to have time to learn.I didn't change the Adam optimizer algorithm's learning rate from 0.001, to retain algorithm integrity. With the early stopping callback applied, no matter the number of features, the model never came close to breaking 200 epochs during model fitting, much less 500.
+The batch size (how many rows are fed into the model at a time) is set to 150. The model is set to run for 500 epochs -this is where the early stopping callback function plays an important role. While the model does not have many rows being fed in at once, the high number of epochs with a generous patience level allows the model to have time to learn.I didn't change the Adam optimizer algorithm's learning rate from 0.001, to retain algorithm integrity. With the early stopping callback applied, no matter the number of features, the model never came close to breaking 200 epochs during model fitting, much less 500.
 
 ### Model Evaluation
 Again using the TensorFlow Keras library and the evaluate() function, after the model had completed fitting, both the testing and validation data were evaluated on what the model had learned during fitting. This is the first time the model encountered the original 25% validation data. The evaluate() function returned the same metrics that the model measured during fitting - binary cross-entropy as 'loss', binary accuracy, and AUC.
 
 ### Model Predictions
 Predictions were done using the TensorFlow Keras function predict(), returning probabilistic predictions on the validation data, indicating the likelihood that a URL is benign or phishing. In functionality, you could apply the predict function to the entire dataset, but it is inadvisable to ask the model to make predictions on data that it was already trained on.
+
+### Model Built as Function + Cross-Validation Scoring & Predictions
+Because we hope to transform our models into a deployable format for API/website development, I additionally programmed the model as a function and built it using Keras' KerasClassifier() scikit learn wrapper with the model as the build function. A 5-fold cross-validation scoring was ran against the model to ensure accuracy and to mitigate overfitting. Further, after the cross-validation scoring was completed, I had the model predict using a 5-fold cross validation prediction. There were some issues getting a proper confusion matrix with the first way the model was built/compiled, but with the KerasClassifier() wrapper I was able to get an accurate confusion matrix of the predictions, which was great to see.
 
 
 ---
