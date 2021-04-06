@@ -15,7 +15,7 @@ This project is a WIP and will be updated over time.
 
 #### Random Forest Model
 
-
+Jack Beck was in charge of this portion of the project.
 
 
 
