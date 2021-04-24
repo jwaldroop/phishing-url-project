@@ -57,13 +57,13 @@ def phish_nn():
     earlystopping = tf.keras.callbacks.EarlyStopping(monitor = 'val_accuracy', mode = 'max', patience = 15, restore_best_weights = True)
     history = model.fit(train_X, train_y, validation_split=0.30, batch_size= 250, epochs=500, callbacks = [earlystopping], workers=8)
     predictions = model.predict(val_X)
-    scores = model.evaluate(val_X, val_y) #give the model the ability to evaluate like was done above
+    val_scores = model.evaluate(val_X, val_y) #give the model the ability to evaluate like was done above
     #saved_model = model.save(filepath='./deploy-nn/saved_deployable_nn/', include_optimizer=True, overwrite=True)
-    scores = model.evaluate(train_X, train_y) #give the model the ability to evaluate like was done above
+    train_scores = model.evaluate(train_X, train_y) #give the model the ability to evaluate like was done above
     print('Training Binary Cross Entropy: \n', round(((scores[0])*100),2), '%')
     print('Prediction probabilities: \n', predictions)
     print('Validation Binary Crossentropy: \n', round(((scores[0])*100),2), '%')
-    print('Validation Accuracy: \n', round(((scores[1])*100),2), '%')
-    print('Training Accuracy: \n', round(((scores[1])*100),2), '%')
+    print('Validation Accuracy: \n', round(((val_scores[1])*100),2), '%')
+    print('Training Accuracy: \n', round(((train_scores[1])*100),2), '%')
     return model
 phish_nn()
