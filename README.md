@@ -26,6 +26,9 @@ Jack Beck was in charge of this portion of the project.
 
 Jordan Waldroop was in charge of this portion of the project.
 
+
+To run the .py file, the .py file and the dataset (or any other compatible dataset) will first need to be downloaded. Then, open a Powershell window and navigate to the folder containing the .py file and the dataset. Run the command ```python deployable_nn.py --inputfile dataset_full.csv ```
+
 ### Data split and normalization
 After assigning X and y for each model, I used the TensorFlow Keras utility library to normalize X. For the dataset split, the train_test_split function from the sklearn library was used to do a 75/25 split with a random_state of 808.
 
