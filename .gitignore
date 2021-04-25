@@ -1,4 +1,5 @@
 .ipynb_checkpoints
+.vscode
 phishing_nn.ipynb
 model_structure_1.png
 model_structure_2.png
