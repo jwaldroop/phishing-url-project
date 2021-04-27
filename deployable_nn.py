@@ -108,7 +108,7 @@ def phish_nn():
     print('Starting Model Fit')
     history = model.fit(train_X, train_y, validation_split=0.30, batch_size=1500, epochs=250,
                         callbacks = [earlystopping], workers=8, verbose=0)
-    predictions = (model.predict(val_X) > 0.5).astype('int32')
+    predictions = (model.predict(val_X) > 0.50).astype('int32')
     val_scores = model.evaluate(val_X, val_y) #give the model the ability to evaluate like was done above
     #saved_model = model.save(filepath='./deploy-nn/saved_deployable_nn/', include_optimizer=True, overwrite=True)
     train_scores = model.evaluate(train_X, train_y) #give the model the ability to evaluate like was done above
