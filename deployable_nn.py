@@ -134,7 +134,7 @@ def cross_val_nn():
     print('Starting 5-fold cross validation of model')
     cv_results = cross_val_score(mod, X, y, cv=kfold)
     print('Starting 5-fold cross-validation predictions')
-    cv_preds = cross_val_predict(mod, X, y, cv=num_folds, verbose=0, method='predict')
+    cv_preds = cross_val_predict(mod, X, y, cv=kfold, verbose=0, method='predict')
     print('The average cross-validation accuracy is: ', round(cv_results.mean(), 4)*100, '%')
     print('The 5-fold cross validation accuracy results are: \n', cv_results)
     acc = accuracy_score(y, cv_preds)
