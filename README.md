@@ -9,6 +9,7 @@ It is very likely that we will continue to add other various datasets to our pro
 Thank you to the original authors of the data article for paving the way for our project.
 This project is a WIP and will be updated over time.  
 
+The final version of this projects report can be found here: https://github.com/jwaldroop/phishing-url-project/blob/main/Predicting_Phishing_URLs%20_Final_Report.pdf
 ---
 
 ## Project Structure and Methods
