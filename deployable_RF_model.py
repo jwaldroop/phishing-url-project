@@ -60,7 +60,7 @@ train_X, val_X, train_y, val_y = train_test_split(X, y, random_state=426)
 # Loading RF model
 # Uses recursive feautre elimination to reduce model inputs
 
-with open('final-model.pkl' , 'rb') as f:
+with open('final-RF-model.pkl' , 'rb') as f:
     # pickle the data dictionary using the highest protocol availabe
     model_final = pickle.load(f)
 
