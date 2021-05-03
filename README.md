@@ -19,6 +19,25 @@ This project is a WIP and will be updated over time.
 
 Jack Beck was in charge of this portion of the project.
 
+### Running the Model
+To run the deployable RF model, ensure that all of the required libraries are installed by using the command 'pip install -r RF_requirements.txt'. From here ensure that the script 'deployable_RF_model.py' and the pickled model 'final-model.pkl' are in the same directory, then simply navigate to the directory that contains both of those files and run the script with the following command: 'python deployable_RF_model.py'. The data should be loaded from GitHub automatically, so there is no need to have the data in the working directory.
+
+### Data split
+For the dataset split, the train_test_split function from the sklearn library was used to do a 75/25 split with a random_state of 426.
+
+### Feature Selection
+In the creation of this final model, several different iterations were created to identify feature importance and to select which features to use in the final model. Initially, a comprehensive model was created which used all 111 features. From here, 6 individual models were created to test out the various feature 'table' subsets that were outlined in the original data article. With those models evaluated, it was decided that the best course of action would be to use the initial comprehensive, and to refine it using the recursive feature elimination function from the sklearn.feature_selection module. This narrowed the final model's feature set down to the 50 most important features. All of the various model iterations are present in the 'RandomForest_Edited.ipynb' Jupyter notebook.
+
+### Model Structure
+The structure of this random forest model is relatively straight forward. The final model uses the top 50 features identified by the recursive feature elimination. The model has 200 individual trees, each with a maximum depth of 15.
+
+### Model Evaluation
+The model was evaluated to create the following performance metrics and charts: Mean Accuracy, F-1 Score, Mean Precision, ROC Curve, Precision-Recall curve. All of these evaluation metrics will be generated upon running the final model script. Model accuracy was then verified using a 5-fold cross validation.
+
+### Analyzing Feature Importance
+To get a better understanding of the relative importance of various features in the final model, use of the SHAP library was performed. This allowed us to create visualizations to better understand feature significance using each features respective SHAP value. The SHAP calculations are very computationally intensive, and have been removed from the final .py script in a effort to reduce runtime. The relevant SHAP graphs can be found in this model's Jupyter notebook. Note that SHAP is NOT installed with 'RF_requirements.txt', so you will have to install it separately in you Jupyter environment. To learn more about SHAP, check out the following links:
+- https://github.com/slundberg/shap
+- https://christophm.github.io/interpretable-ml-book/shap.html
 
 ---
 

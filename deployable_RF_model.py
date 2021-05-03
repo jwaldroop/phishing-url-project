@@ -9,7 +9,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, f1_score, a
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
-
+import pickle
 
 
 print(os.getcwd())
@@ -57,47 +57,17 @@ X.head()
 
 train_X, val_X, train_y, val_y = train_test_split(X, y, random_state=426)
 
-# Creating RF model
-# making model on full dataset to use RFE selector on
+# Loading RF model
+# Uses recursive feautre elimination to reduce model inputs
 
-model_full = RandomForestClassifier(n_jobs = -1, verbose = False, n_estimators = 200 , random_state = 426, max_depth = 15) # n_jobs = -1 specifies using all avalible CPU cores. This can slow down other programs on the system. You can set it to the exact number of cores if you would like retain some computing power.
-model_full.fit(train_X,train_y)\
+with open('final-model.pkl' , 'rb') as f:
+    # pickle the data dictionary using the highest protocol availabe
+    model_final = pickle.load(f)
 
-if model_full == model_full:
+if model_final == model_final:
     print("RF Model Created")
 else:
     print("RF Model Failed to Create")
-
-# Going to use recursive feature elimination from sklearn to get top 50 features
-from sklearn.feature_selection import RFE
-
-# This is computationally intensive, may take a few minutes
-
-print('Recursive Feature Elimination Has Begun')
-selector = RFE(model_full, n_features_to_select= 50, step=1)
-selector = selector.fit(X, y)
-print('Recuseive Feature Elimination Completed')
-
-# This should return a boolean which I can use to index the feature set
-selector_index = selector.get_support()
-
-# indexing features based on the RFE selector
-
-final_Features = Features.iloc[:,selector_index]
-
-# Setting X and y based on RFE
-
-X = final_Features
-y = dataRaw['phishing']
-
-# Split into train and test data
-
-train_X, val_X, train_y, val_y = train_test_split(X, y, random_state=426)
-
-# Final model post RFE
-
-model_final = RandomForestClassifier(n_jobs = -1, verbose = False, n_estimators = 200 , random_state = 426, max_depth = 15)
-model_final.fit(train_X,train_y)
 
 # Saving some validation predicitons and probabilites
 val_preds = model_final.predict(val_X)
@@ -151,8 +121,9 @@ plt.show()
 # Confusion Matrix
 print('Confusion Matrix: \n', confusion_matrix(val_y,val_preds))
 
+
 # Cross Validation
 print('Beginning Cross Validation')
-cv_scores_final = cross_val_score(model_final, X, y, cv=5)
+cv_scores_final = cross_val_score(model_final['m'], X, y, cv=5)
 print('Cross Validation Scores: \n' , cv_scores_final)
 print('Mean Accuracy From Cross Validation:', mean(cv_scores_final))
