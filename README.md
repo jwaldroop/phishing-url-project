@@ -20,7 +20,7 @@ This project is a WIP and will be updated over time.
 Jack Beck was in charge of this portion of the project.
 
 ### Running the Model
-To run the deployable RF model, ensure that all of the required libraries are installed by using the command 'pip install -r RF_requirements.txt'. From here ensure that the script 'deployable_RF_model.py' and the pickled model 'final-model.pkl' are in the same directory, then simply navigate to the directory that contains both of those files and run the script with the following command: 'python deployable_RF_model.py'. The data should be loaded from GitHub automatically, so there is no need to have the data in the working directory.
+To run the deployable RF model, ensure that all of the required libraries are installed by using the command 'pip install -r RF_requirements.txt'. From here ensure that the script 'deployable_RF_model.py' and the pickled model 'final-model.pkl' are in the same directory, then in a command line, simply navigate to the directory that contains both of those files and run the script with the following command: 'python deployable_RF_model.py'. The data should be loaded from GitHub automatically, so there is no need to have the data in the working directory.
 
 ### Data split
 For the dataset split, the train_test_split function from the sklearn library was used to do a 75/25 split with a random_state of 426.
