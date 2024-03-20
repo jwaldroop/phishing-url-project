@@ -1,7 +1,5 @@
 pandas
-sklearn
+scikit-learn
 numpy
 statistics
-math
-pickle
 matplotlib
