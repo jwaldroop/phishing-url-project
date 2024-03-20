@@ -5,7 +5,7 @@ import numpy as np
 import math
 import os
 from statistics import mean
-from sklearn.metrics import mean_absolute_error, mean_squared_error, f1_score, average_precision_score, accuracy_score, plot_precision_recall_curve, precision_recall_curve, roc_curve, roc_auc_score, confusion_matrix
+from sklearn.metrics import mean_absolute_error, mean_squared_error, f1_score, average_precision_score, accuracy_score, precision_recall_curve, roc_curve, roc_auc_score, confusion_matrix
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
